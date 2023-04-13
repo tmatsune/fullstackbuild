@@ -1,0 +1,56 @@
+#logMain{
+    margin-left: 20%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+}
+#logDiv{
+    border-style: solid;
+    height: 80%;
+    width: 40%;
+    margin-left: 6%;
+    margin-top: 6%;
+}
+#regDiv{
+    border-style: solid;
+    height: 80%;
+    width: 40%;
+    margin-left: 6%;
+    margin-top: 6%;
+}
+#logWrapper{
+    margin-left: 22%;
+    margin-top: 20%;
+}
+#regWrapper{
+    margin-left: 22%; 
+    margin-top: 14%;  
+}
+#inpLabel{
+    margin-top: 10%;
+    width: 80%
+}
+#inpLabel input{
+    width: 80%;
+    background: linear-gradient(115deg, rgba(46, 36, 91, 0.6), rgba(80, 55, 242, 0.6));
+    backdrop-filter: blur(50px);
+    align-self: center;
+    padding: 3%;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    resize: none;
+    color: white;
+    border-radius: 6px;
+}
+#logBtn{
+    border: none;
+    background: linear-gradient(115deg, rgba(46, 36, 91, 0.6), rgba(80, 55, 242, 0.6));
+    padding: 8px;
+    margin-top: 3%;
+    color: white;
+    border-radius: 12px;
+}
+#logBtn:hover{
+    border-style: solid;
+}

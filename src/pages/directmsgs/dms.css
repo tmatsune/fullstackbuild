@@ -1,0 +1,17 @@
+
+#dmsMain{
+    margin-left: 20%;
+    height: 100vh;
+    position: relative; 
+}
+#sendBtn1 {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    margin-left: 84%;
+    margin-top: 2%;
+}
+
+#sendBtn1:hover {
+    transform: scale(1.12)
+}

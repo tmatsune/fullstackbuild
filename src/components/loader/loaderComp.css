@@ -1,0 +1,17 @@
+
+#loadComp{
+    position: absolute;
+    right: 8%;
+    height: 80%;
+    width: 30%;
+    top: 10%;
+}
+#loader1{
+    position: relative;
+    left: 12%;
+    top: 20%
+}
+#loader2{position: relative;
+    left: 12%;
+    top: 50%
+}

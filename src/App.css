@@ -1,38 +1,146 @@
 .App {
-  text-align: center;
+    background: linear-gradient(90deg, rgb(31, 31, 31), rgb(24, 24, 24));
+    color: white;
+    transition: 0.8s ease-in-out;
+}
+.dark{
+    background: rgb(31, 31, 31);
+    color: white;
+    transition: ease-in 0.6s;
+}
+.light{
+    background: rgb(78, 118, 250);
+    color: white;
+    transition: ease-in 0.6s;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#check{
+    position: absolute;
+    display: block;
+    width: 60px;
+    height: 32px;
+    cursor: pointer;
+    background: rgb(222, 240, 249);
+    border-radius: 16px;
+    z-index: 20;
+    left: 4%;
+    top:6%;
+    transition: ease-in 0.5s;
+}
+#check2{
+    position: absolute;
+    display: block;
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+    background: rgb(45, 45, 45);
+    border-radius: 16px;
+    z-index: 20;
+    left: 4%;
+    top: 6%;
+    transition: ease-in 0.5s;
+}
+#sun{
+    height: 30px;
+    width: 30px;
+    top:2%;
+    left: 30%;
+    position: relative;
+    transition: ease-in 0.5s;
+    transform: translateX(6px);
+}
+#moon{
+    height: 28px;
+    width: 28px;
+    top:3.2%;
+    left: 16.8%;
+    position: relative;
+    transition: ease-out 0.5s;
+    transform: translateX(-8px);
+}
+#pageWrapper{
+    transform: scale(.94);
+    background: linear-gradient(115deg, rgba(253, 245, 254, 0.1), rgba(169, 149, 247, 0.12));
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    box-shadow: 0 18px 42px 0 rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 2;
+}
+#dot {
+    position: absolute;
+    height: 700px;
+    width: 700px;
+    border-radius: 50%;
+    z-index: 0;
+    background: linear-gradient(180deg, rgb(196, 17, 255), rgb(9, 78, 255));
+    left: 34%;
+    top: 4%;
+    animation: move 8s ease-in-out infinite;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@keyframes move {
+    0% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+
+    50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+
+    100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#dot1 {
+    position: absolute;
+    height: 700px;
+    width: 600px;
+    border-radius: 50%;
+    z-index: 0;
+    background: linear-gradient(180deg, rgb(17, 120, 255), rgb(0, 70, 245));
+    left: 28%;
+    top: 4%;
+    animation: move1 4s ease-in-out infinite;
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes move1 {
+    0% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+
+    50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+
+    100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#dot2 {
+    position: absolute;
+    height: 600px;
+    width: 600px;
+    border-radius: 50%;
+    z-index: 0;
+    background: linear-gradient(180deg, rgb(173, 31, 255), rgb(208, 65, 255));
+    left: 14%;
+    top: 14%;
+    animation: move2 5s ease-in-out infinite;
+}
+
+@keyframes move2 {
+    0% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+
+    50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+
+    100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
 }

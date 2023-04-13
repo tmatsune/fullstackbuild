@@ -1,0 +1,82 @@
+
+#profMain{
+    height: 100vh;
+    margin-left: 20%;
+    position: relative
+}
+#profCard{
+    border-radius: 16px;
+    padding: 20px;
+    margin: 5% 5% 5% 5%;
+    overflow: hidden;
+    overflow-y: scroll;
+    font-family: 'Mulish', sans-serif;
+    box-shadow: 0 0 6px 6px rgba(0, 0, 122, 0.2);
+    background: linear-gradient(115deg, rgba(53, 46, 84, 0.6), rgba(84, 79, 119, 0.6));
+    backdrop-filter: blur(50px);
+    position: relative;
+    z-index: 4;
+    width: 50%;
+}
+#profDetails{
+    border-radius: 16px;
+    padding: 20px;
+    margin: 5% 5% 5% .4%;
+    overflow: hidden;
+    overflow-y: scroll;
+    font-family: 'Mulish', sans-serif;
+    box-shadow: 0 0 6px 6px rgba(0, 0, 122, 0.2);
+    background: linear-gradient(115deg, rgba(53, 46, 84, 0.6), rgba(84, 79, 119, 0.6));
+    backdrop-filter: blur(50px);
+    position: relative;
+    z-index: 4;
+    width: 50%;
+}
+#fri{
+    text-decoration: none;
+    color: white;
+    border-style: solid;
+    padding: 6px;
+    border-radius: 8px;
+}
+#fri:hover{
+    border-color: rgb(62, 30, 92);
+    color: rgb(57, 27, 86);
+    background-color: white;
+}
+#profLis{
+    margin: 4%;
+    width: 50%;
+}
+#profImg{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    position: absolute;
+    right: 10%;
+    border-style: solid;
+}
+#profLoader{
+    position: absolute;
+    left: 80%;
+    top: 4%;
+}
+#changeDiv{
+    position: absolute;
+    display: block;
+    top: 40%;
+}
+#submitBtn{
+    cursor: pointer;
+    border-radius: 8px;
+    position: relative;
+    padding: 6px;
+    margin-top: 2%;
+    border-style: solid;
+    top: 4%;
+}
+#submitBtn:hover{
+    border-color: blueviolet;
+    color: blueviolet;
+    background-color: white;
+}

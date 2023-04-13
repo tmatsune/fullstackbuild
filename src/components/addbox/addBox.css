@@ -1,0 +1,59 @@
+
+#addUserBox{
+    position: absolute;
+    height: 180px;
+    width: 300px;
+    border-style: solid;
+    z-index: 10;
+    right: 10%;
+    top: -20%;
+    padding: 4%;
+    display: block;
+    border-width: .6px;
+    border-radius: 8px;
+    animation: popup .4s ease-in;
+    box-shadow: 0 0 6px 6px rgba(0, 0, 122, 0.2);
+    background: linear-gradient(115deg, rgba(30, 27, 43, 0.8), rgba(84, 79, 119, 0.8));
+    backdrop-filter: blur(50px);
+}
+@keyframes popup {
+    0% {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+#search{
+    height: 40px;
+    width: 40px;
+}
+#min{
+    position: absolute;
+    height: 28px;
+    width: 28px;  
+    left: 6%;
+    top:3.4%;
+}
+#sInput{
+    width: 90%;
+}
+#searchWrapper{
+    display: flex;
+    margin-top: 10%;
+}
+#resDiv{
+    height: 60%;
+}
+#addIg{
+    height: 40px;
+    width: 40px;
+    margin-left: 60%;
+    margin-top: 40%;
+}
+#addIg:hover{
+    transform: scale(1.12);
+}

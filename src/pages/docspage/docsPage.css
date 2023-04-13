@@ -1,0 +1,28 @@
+
+#docMain{
+    height: 100vh;
+    margin-left: 20%;
+    position: relative;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+#quill{
+    position: realtive;
+    margin-top: 4%;
+    margin-left: 10%;
+    height: 96%;
+    width: 80%;
+    margin-bottom: 6%;
+    color: white;
+    background: linear-gradient(90deg, rgba(137, 147, 244, 0.4), rgba(198, 219, 255, 0.4));
+}
+#saveBtn{
+    height: 72px;
+    width: 72px;
+    position: absolute;
+    top: 4%;
+}
+#saveBtn:hover{
+    transform: scale(1.06)
+}

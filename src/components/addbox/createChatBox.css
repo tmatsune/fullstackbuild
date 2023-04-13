@@ -1,0 +1,107 @@
+#addGroupChat {
+    position: absolute;
+    height: 340px;
+    width: 300px;
+    border-style: solid;
+    z-index: 10;
+    left: 70%;
+    top: 18%;
+    padding: 4%;
+    display: block;
+    border-width: .6px;
+    border-radius: 8px;
+    animation: popup .4s ease-in;
+    box-shadow: 0 0 6px 6px rgba(0, 0, 122, 0.2);
+    background: linear-gradient(115deg, rgba(128, 105, 227, 0.8), rgba(150, 136, 242, 0.8));
+    backdrop-filter: blur(50px);
+}
+@keyframes popup {
+    0%{
+        opacity: 0;
+        transform: scale(1.2);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+#min{
+    position: absolute;
+    height: 28px;
+    width: 28px;
+}
+#min:hover{
+    transform: scale(1.12);
+}
+#addGroupChat form{
+    margin-top: 8%;
+    margin-bottom: 66%;
+}
+#toggle{
+    margin-left: 68%;
+    border-style:solid;
+    padding: 2px;
+    cursor: pointer;
+    margin-top: 16px;
+    position: relative;
+    margin-bottom: 40%;
+}
+#toggle:hover{
+    background: white;
+    color:rgba(0, 0, 6, 0.2);
+}
+#toggle1{
+    margin-left: 68%;
+    border-style:solid;
+    padding: 2px;
+    cursor: pointer;
+    margin-top: 16px;
+    position: absolute;
+    margin-top: -10%;
+}
+.sInput{
+    width: 100%;
+}
+#search{
+    height: 42px;
+    width: 42px;
+    margin-left: 10%;
+}
+#search:hover{
+    transform:scale(1.12);
+}
+.chatInput{
+    background: linear-gradient(115deg, rgba(46, 36, 91, 0.6), rgba(80, 55, 242, 0.6));
+    backdrop-filter: blur(50px);
+    align-self: center;
+    padding: 1%;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    resize: none;
+    color: white;
+    border-radius: 6px;
+    width: 80%;
+    margin: 1%;
+}
+#showUsers{
+    border-radius: 12px;
+    background: linear-gradient(115deg, rgba(46, 36, 91, 0.6), rgba(80, 55, 242, 0.6));
+    padding: 6px;
+    cursor: pointer;
+    font-size: .8rem;
+}    
+#showUsers:hover{
+    border-style: solid;
+}   
+#addBtn {
+    border-radius: 10px;
+    background: linear-gradient(115deg, rgba(46, 36, 91, 0.6), rgba(80, 55, 242, 0.6));
+    padding: 6px;
+    cursor: pointer;
+    font-size: .8rem;
+    margin-left: 20%;
+}
+#addBtn:hover {
+    border-style: solid;
+}

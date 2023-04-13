@@ -1,0 +1,46 @@
+
+
+#frMain{
+    height: 100vh;
+    margin-left: 20%;
+    position: relative;
+}
+#frCard{
+    border-radius: 16px;
+    padding: 20px;
+    top: 4%;
+    left: 10%;
+    overflow: hidden;
+    overflow-y: scroll;
+    font-family: 'Mulish', sans-serif;
+    box-shadow: 0 0 6px 6px rgba(0, 0, 122, 0.2);
+    background: linear-gradient(115deg, rgba(53, 46, 84, 0.6), rgba(84, 79, 119, 0.6));
+    backdrop-filter: blur(50px);
+    position: relative;
+    z-index: 4;
+    width: 76%;
+    height: 80%;
+}
+#inCard{
+    position: relative;
+    left: 20%;
+    top: 6%;
+    width: 60%;
+}
+#email{
+    height: 60px;
+    width: 60px;    
+    margin-left: 10%;
+}
+#email:hover{
+    transform: scale(1.12)
+}
+
+#remFri{
+    height: 60px;
+    width: 60px;
+    margin-left: 14%;
+}
+#remFri:hover {
+    transform: scale(1.12)
+}

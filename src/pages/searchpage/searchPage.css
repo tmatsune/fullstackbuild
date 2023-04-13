@@ -1,0 +1,60 @@
+
+
+#searchMain{
+    height: 100vh;
+    margin-left: 20%;
+    position: relative;
+}
+#searchWrappers{
+    border-radius: 16px;
+    background-color: white;
+    padding: 20px;
+    left: 10%;
+    top: 6%;
+    overflow: hidden;
+    overflow-y: scroll;
+    font-family: 'Mulish', sans-serif;
+    box-shadow: 0 0 6px 6px rgba(0, 0, 122, 0.2);
+    background: linear-gradient(115deg, rgba(53, 46, 84, 0.6), rgba(84, 79, 119, 0.6));
+    backdrop-filter: blur(50px);
+    position: relative;
+    z-index: 4;
+    width: 80%;
+    height: 80%;
+}
+#sInput{
+    background: linear-gradient(115deg, rgba(46, 36, 91, 0.6), rgba(80, 55, 242, 0.6));
+    backdrop-filter: blur(50px);
+    align-self: center;
+    padding: 2%;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    resize: none;
+    color: white;
+    border-radius: 6px;
+}
+#searchBar{
+    width: 80%;
+    height: 20%;
+}
+#searchPng{
+    height: 50px;
+    width: 50px;
+    position: relative;
+    left: 6%;
+    top: 20%;
+}
+#searchPng:hover{
+    transform: scale(1.12)
+}
+#addUser{
+    height: 60px;
+    width: 60px;
+    position: relative;
+    left: 24%;
+    top: 12%;
+}
+#addUser:hover{
+    transform: scale(1.08)
+}

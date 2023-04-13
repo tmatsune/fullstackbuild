@@ -1,0 +1,97 @@
+#chatMain{
+    margin-left: 20%;
+    height: 100vh;
+    position: relative;
+}
+.textBubble {
+    border-radius: 20px;
+    background-color: rgb(100, 209, 255);
+    padding: 16px;
+    margin-top: 2%;
+    width: 80%;
+    margin-left: 13.2%;
+    border-width: .4px;
+    font-family: 'Mulish', sans-serif;
+    background: linear-gradient(115deg, rgba(46, 36, 91, 0.6), rgba(105, 83, 245, 0.6));
+    backdrop-filter: blur(50px);
+}
+.textName {
+    position: relative;
+    left: 2%;
+}
+.textBubble2 {
+    border-radius: 20px;
+    background-color: white;
+    padding: 16px;
+    margin-top: 2%;
+    width: 80%;
+    border-width: .4px;
+    font-family: 'Mulish', sans-serif;
+    margin-left: 2%;
+    background: linear-gradient(115deg, rgba(53, 46, 84, 0.6), rgba(84, 79, 119, 0.6));
+    backdrop-filter: blur(50px);
+}
+#sendBtn{
+    position: relative;
+    height: 40px;
+    width: 40px;
+    margin-left: 84%;
+    margin-top: -2%;
+}
+#sendBtn:hover{
+    transform: scale(1.12)
+}
+#msgs{
+    overflow: hidden;
+    height: 480px;
+    overflow-y: scroll;
+}
+#msgDiv {
+    border-radius: 4px;
+    border-style: solid;
+    border-width: .1px;
+    height: 120px;
+    width: 50%;
+    bottom: 4%;
+    margin-left: 1%;
+    position: absolute;
+    z-index: 100;
+    background-color: white;
+    background: linear-gradient(115deg, rgba(46, 36, 91, 0.6), rgba(105, 83, 245, 0.6));
+    backdrop-filter: blur(50px);
+}
+
+#msgDiv textarea {
+    color: white;
+    width: 99%;
+    margin-left: 0.4%;
+    align-self: center;
+    padding: 1%;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    resize: none;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(115deg, rgba(46, 36, 91, 0.6), rgba(105, 83, 245, 0.6));
+    backdrop-filter: blur(50px);
+}
+#txtImg {
+    width: 30%;
+}
+.msgWrapper{
+    width: 80%;
+    border-width: 1px;
+}
+#detWrapper{
+    width: 60%;
+    border-width: 1px;
+
+}
+#loader{
+    z-index: 100;
+    top: 50%;
+    left: 38%;
+}
+#loader2{
+    top: 60%;
+}

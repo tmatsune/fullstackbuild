@@ -1,0 +1,110 @@
+
+
+#docStartMain{
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: scroll;
+    position: relative;
+    margin-left: 22%;
+}
+.createDocBox{
+    height: 200px;
+    width: 160px;
+    background: linear-gradient(180deg, rgba(129, 40, 253, 0.4), rgba(34, 93, 255, 0.4));
+    margin-top: 4%;
+    border-radius: 12px;
+}   
+.createDocBox:hover {
+    transform: scale(1.02)
+}
+#addDocBtn{
+    height: 70px;
+    width: 70px;
+    left: 26%;
+    top: 29%;
+    position: relative;
+}
+#addDocBtn:hover{
+    transform: scale(1.02)
+}
+.lisDocs{
+    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 4%;
+}
+.docSnap{
+    height: 200px;
+    width: 160px;
+    background: linear-gradient(180deg, rgba(126, 41, 245, 0.374), rgba(33, 83, 247, 0.342));
+    border-radius: 12px;
+
+}
+#docDet{
+    position: absolute;
+    margin-left: 4.4%;
+    text-decoration: none;  
+    color:white;
+}
+#detailsDiv{
+    margin-top: 90%;
+}
+#createDocDiv{
+    padding: 10px;
+    height: 200px;
+    width: 200px;
+    position: relative;
+    margin-left: 110%;
+    bottom: 36%;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(119, 27, 248, 0.4), rgba(55, 91, 249, 0.4));
+    animation: slideRight .5s ease-in;
+}
+@keyframes slideRight {
+    0%{
+        transform: scale(1.4), translateX(-100px);
+        opacity: 0;
+    }
+    100%{
+        transform: scale(1), translateX(0);
+        opacity: 1;
+    }
+}
+#docInput{
+    padding: 1%;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    resize: none;
+    color: white;
+    background: linear-gradient(115deg, rgba(46, 36, 91, 0.6), rgba(105, 83, 245, 0.6));
+    backdrop-filter: blur(50px);
+}
+#fileImg{
+    position: absolute;
+    height: 140px;
+    width: 140px;
+    margin-top: -13.6%;
+    margin-left: .6%;
+}
+#docLoader{
+    margin-left: 60%;
+    margin-top: 40%;
+}
+#docLoader1{
+    margin-left: 190%;
+    margin-top: 40%;
+}
+#docLoader2 {
+    margin-left: 310%;
+    margin-top: 40%;
+}
+#remBtn{
+    height: 40px;
+    width: 40px;
+}
+#remBtn:hover{
+    transform: scale(1.08)
+}
+
