@@ -158,7 +158,7 @@ function Channel(){
             {
                 loading ? (<HashLoader color={'#00f9df'}loading={loading} size={94} data-test id="loader"/>) : (
                     messages.map((item, idx) => {
-                        return(
+                        return( 
                             item.sender !== currentUser.username ?(
                             <div key={idx}>
                                 <h5 className='textName'>{item.sender}</h5>
@@ -172,6 +172,7 @@ function Channel(){
                             (
                             <div key={idx}>
                                 <div className='textBubble' key={idx}>
+                                
                                 <p>{item.text}</p>
                                 {
                                     item.fileUrl !== '' ? (<img alt='' src={item.fileUrl} id='txtImg'></img>) : (null)
