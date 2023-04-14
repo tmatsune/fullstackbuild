@@ -7,7 +7,7 @@ import SUB from '../../images/sub.png'
 import SEARCH from '../../images/search.png'
 import { ChannelContext } from '../../context/channelConext'
 import { fetchData } from '../../hooks/updateList'
-
+import { createGroupChat } from '../../utils/firebase'
 
 function CreateAddBox({update}){
     const {currentUser} = useContext(UserContext)
@@ -55,6 +55,7 @@ function CreateChat({currentUser}){
             }  
             const data = await axios.post(createUrl, inputHandler)
             //console.log(data.data)
+            await createGroupChat(newChat) ////////firebase
             updateChatList()
             setNewChat('')
             setDesc('')

@@ -141,3 +141,30 @@ background: linear-gradient(90deg, rgb(154, 52, 255), rgb(142, 89, 255));
 background: linear-gradient(90deg, rgb(122, 71, 251), rgb(99, 104, 252));
 //dark bg
 background: linear-gradient(90deg, rgb(31, 31, 31), rgb(24, 24, 24));
+
+
+    const sendMsg =  async() => {
+        const messageState = {
+            chatNameId: pathId.replace('%20',' '),
+            sender: currentUser.username,
+            text: newText,
+        }
+        const messageState2 = {
+            chatNameId: pathId,
+            sender: currentUser.username,
+            text: newText,
+            createdAt: new Date()
+        }
+        try{
+            const sendImg = ''
+            //const sentMsg = await axios.post(sendUrl, messageState)
+            //console.log(sentMsg)
+            const gcName = pathId.replace(/%20/g,' ')
+            addToChat(newText, gcName, sendImg, currentUser.username)
+            //await socket.emit("sendMessage", messageState2)
+            console.log("message sent")
+            setNewText('')
+        }catch(err){ 
+            console.log(err)
+        }
+    }

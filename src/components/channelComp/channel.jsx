@@ -11,7 +11,8 @@ import HashLoader from "react-spinners/HashLoader";
 import LoaderComp from '../../components/loader/loaderComp'
 import SEND from '../../images/send.png'
 import { useNavigate } from "react-router-dom";
-import { getImage, uploadImage } from '../../utils/firebase'
+import { getImage, uploadImage, addToChat, db } from '../../utils/firebase'
+import { doc, onSnapshot } from 'firebase/firestore'
 
 function Channel(){
     const location = useLocation()
@@ -52,7 +53,7 @@ function Channel(){
         try{
             const data = await axios.get(url)
             //console.log(data)
-            setMessages(data.data)
+            //setMessages(data.data)
             setLoading(false)
         }catch(err){
             console.log(err)
@@ -67,69 +68,59 @@ function Channel(){
 
     const sendUrl = 'http://localhost:3001/message/addMessage'
     const sendMsg =  async() => {
-        var sendImg = ''
         if(imageUpload != null){
-            setImgLoading(true)
             await uploadImage(channelInfo.chatName, imageUpload)
             var sendImg = await getImage(channelInfo.chatName, imageUpload)
+            const gcName = pathId.replace(/%20/g,' ')
+            addToChat(newText, gcName, sendImg, currentUser.username)//////firebase
+            //await socket.emit("sendMessage", messageState2)
             setImageUpload(null)
             setImgLoading(false)
+            setNewText('')
         }else{
             var sendImg = ''
-        }
-
-        const messageState = {
-            chatNameId: pathId.replace(/%20/g,' '), //.replace('%20',' ')
-            sender: currentUser.username,
-            text: newText,
-            firebaseImgUrl: sendImg
-        }
-        const messageState2 = {
-            chatNameId: pathId,
-            sender: currentUser.username,
-            text: newText,
-            imageUrl: sendImg,
-            createdAt: new Date()
-        }
-        try{
-            
-            const sentMsg = await axios.post(sendUrl, messageState)
-            //console.log(sentMsg)
-            await socket.emit("sendMessage", messageState2)
-            console.log("message sent")
+            const gcName = pathId.replace(/%20/g,' ')
+            addToChat(newText, gcName, sendImg, currentUser.username)//////firebase
+            //await socket.emit("sendMessage", messageState2)
+            setImageUpload(null)
+            setImgLoading(false)
             setNewText('')
-        }catch(err){ 
-            console.log(err)
         }
+
+    }
+
+    const getFireBaseMsg = async () => {
+        const chatDocRef = doc(db, 'chats', channelInfo.chatName)
+        onSnapshot(chatDocRef, (doc) => {
+            if(doc.data()){
+                var len = doc.data().messages.length
+                console.log(len)
+                if(len > 0)
+                    console.log(doc.data().messages[len-1])
+                    var newMessage = doc.data().messages[len-1]
+                    setMessages((prev) => [...prev, newMessage])
+                    
+            }else{
+                //alert("chat not found")
+                setMessages([{user:'', item:"chat not found"}])
+            }
+        });
     }
     useEffect(() => {
-        setSocket(io.connect("ws://localhost:3002"))
-    }, [])
-
-    useEffect(() => {
-        socket?.emit("joinRoom", pathId)
-    }, [pathId, socket]) 
-
-    useEffect(() => { ////alnsflkasflkasmflkasdf asdklfnlksd
-        socket?.on("messageReceived", (msg) => {
-            console.log("message received from socket io ")
-            setNewMessage(msg)   
-            //setMessages((prev) => [...prev, newMessage])
-        }) 
-        return () => socket?.off('messageReceived');
-    }, [socket])
-
-    useEffect(() => {    
-        if(newMessage){ 
-            setMessages((prev) => [...prev, newMessage])//[...messages, newMessage]
-            setNewMessage(null)
+        if(Object.keys(channelInfo).length > 0){
+            const chatDocRef = doc(db, 'chats', channelInfo.chatName)
+            const unsub = onSnapshot(chatDocRef, (doc) => {
+            if(doc.data()){
+                console.log(doc.data().messages)
+                setMessages(doc.data().messages)  
+            }else{
+                setMessages([{user:'', item:"chat not found"}])
+            }
+            return unsub
+        });
         }
-    },[newMessage])  
- 
-    const test = () => {
-        console.log(currentUser)
-        console.log(channelInfo)
-    }
+    }, [channelInfo])
+
     //const urls = `http://localhost:3001/groupchat/getGroupchat`
 
     const groupChatDetails = async() => {
@@ -172,7 +163,7 @@ function Channel(){
                                 <div className='textBubble2' key={idx}>
                                     <p>{item.text}</p>
                                 {
-                                    item.imageUrl !== '' ? (<img alt='' src={item.imageUrl} id='txtImg'></img>) : (null)
+                                    item.fileUrl!== '' ? (<img alt='' src={item.fileUrl} id='txtImg'></img>) : (null)
                                 } 
                                 </div>
                             </div>) : 
@@ -181,7 +172,7 @@ function Channel(){
                                 <div className='textBubble' key={idx}>
                                 <p>{item.text}</p>
                                 {
-                                    item.imageUrl !== '' ? (<img alt='' src={item.imageUrl} id='txtImg'></img>) : (null)
+                                    item.fileUrl !== '' ? (<img alt='' src={item.fileUrl} id='txtImg'></img>) : (null)
                                 } 
                                 </div>
                             </div>)
@@ -213,6 +204,81 @@ function Channel(){
     )
 }
 
-
-
 export default Channel
+//---[-[-[------]]]------------------//
+/* 
+    useEffect(() => {
+        if(Object.keys(channelInfo).length > 0){
+            const chatDocRef = doc(db, 'chats', channelInfo.chatName)
+            const unsub = onSnapshot(chatDocRef, (doc) => {
+            if(doc.data()){
+                //console.log(doc.data().messages)
+                //setMessages(doc.data().messages)  
+            }else{
+                //alert("chat not found")
+                setMessages([{user:'', item:"chat not found"}])
+            }
+            return unsub
+        });
+        }
+    }, [channelInfo])
+*/ 
+//---------------------------------//
+    /*
+    useEffect(() => {
+        //setSocket(io.connect("ws://localhost:3002"))
+    }, [])
+    useEffect(() => {
+        socket?.emit("joinRoom", pathId)
+    }, [pathId, socket]) 
+
+    useEffect(() => { ////alnsflkasflkasmflkasdf asdklfnlksd
+        socket?.on("messageReceived", (msg) => {
+            console.log("message received from socket io ")
+            setNewMessage(msg)   
+            //setMessages((prev) => [...prev, newMessage])
+        }) 
+        return () => socket?.off('messageReceived');
+    }, [socket])
+    useEffect(() => {    
+        if(newMessage){ 
+            setMessages((prev) => [...prev, newMessage])//[...messages, newMessage]
+            setNewMessage(null)
+        }
+    },[newMessage])  
+        const sendMsg =  async() => {
+        var sendImg = ''
+        if(imageUpload != null){
+            await uploadImage(channelInfo.chatName, imageUpload)
+            var sendImg = await getImage(channelInfo.chatName, imageUpload)
+
+        }else{
+            var sendImg = ''
+        }
+
+        const messageState = {
+            chatNameId: pathId.replace(/%20/g,' '), //.replace('%20',' ')
+            sender: currentUser.username,
+            text: newText,
+            firebaseImgUrl: sendImg
+        }
+        const messageState2 = {
+            chatNameId: pathId,
+            sender: currentUser.username,
+            text: newText,
+            imageUrl: sendImg,
+            createdAt: new Date()
+        }
+        try{
+            const sentMsg = await axios.post(sendUrl, messageState)
+            const gcName = pathId.replace(/%20/g,' ')
+            addToChat(newText, gcName, sendImg, currentUser.username)//////firebase
+            //await socket.emit("sendMessage", messageState2)
+            setImageUpload(null)
+            setImgLoading(false)
+            setNewText('')
+        }catch(err){ 
+            console.log(err)
+        }
+    }
+    */

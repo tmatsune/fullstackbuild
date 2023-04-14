@@ -10,7 +10,9 @@ import HashLoader from "react-spinners/HashLoader";
 import LoaderComp from '../../components/loader/loaderComp';
 import SEND from '../../images/send.png'
 import { useNavigate } from "react-router-dom";
-import { getImage, uploadImage } from '../../utils/firebase'
+import { getImage, uploadImage, addToChat, db } from '../../utils/firebase'
+import { doc, onSnapshot } from 'firebase/firestore'
+
 
 function Dms(){
     const location = useLocation()
@@ -62,59 +64,44 @@ function Dms(){
 
     const sendUrl = 'http://localhost:3001/message/addMessage'
     const sendMsg =  async() => {
-        const messageState = {
-            chatNameId: pathId.replace('%20',' '),
-            sender: currentUser.username,
-            text: newText,
-        }
-        const messageState2 = {
-            chatNameId: pathId,
-            sender: currentUser.username,
-            text: newText,
-            createdAt: new Date()
-        }
-        try{
-            
-            const sentMsg = await axios.post(sendUrl, messageState)
-            //console.log(sentMsg)
-            
-            await socket.emit("sendMessage", messageState2)
-            console.log("message sent")
+        if(imageUpload != null){
+            await uploadImage(dmInfo.chatName, imageUpload)
+            var sendImg = await getImage(dmInfo.chatName, imageUpload)
+            const gcName = pathId.replace(/%20/g,' ')
+            addToChat(newText, gcName, sendImg, currentUser.username)//////firebase
+            //await socket.emit("sendMessage", messageState2)
+            setImageUpload(null)
+            setImgLoading(false)
             setNewText('')
-        }catch(err){ 
-            console.log(err)
+        }else{
+            var sendImg = ''
+            const gcName = pathId.replace(/%20/g,' ')
+            addToChat(newText, gcName, sendImg, currentUser.username)//////firebase
+            //await socket.emit("sendMessage", messageState2)
+            setImageUpload(null)
+            setImgLoading(false)
+            setNewText('')
         }
+
     }
 
-
     useEffect(() => {
-        setSocket(io.connect("ws://localhost:3002"))
-    }, [])
-    useEffect(() => {
-        socket?.emit("joinRoom", pathId)
-    }, [pathId, socket]) 
-
-    useEffect(() => { ////alnsflkasflkasmflkasdf asdklfnlksd
-        socket?.on("messageReceived", (msg) => {
-            console.log("message received from socket io ")
-            setNewMessage(msg)   
-            //setMessages((prev) => [...prev, newMessage])
-        }) 
-        return () => socket?.off('messageReceived');
-    }, [socket])
-
-    useEffect(() => {    
-        if(newMessage){ 
-            setMessages((prev) => [...prev, newMessage])//[...messages, newMessage]
-            setNewMessage(null)
+        if(Object.keys(dmInfo).length > 0){
+            const chatDocRef = doc(db, 'chats', dmInfo.chatName)
+            const unsub = onSnapshot(chatDocRef, (doc) => {
+            if(doc.data()){
+                console.log(doc.data().messages)
+                setMessages(doc.data().messages)  
+            }else{
+                setMessages([{user:'', item:"chat not found"}])
+            }
+            return unsub
+        });
         }
-    },[newMessage])  
+    }, [dmInfo])
  
     //----------getting info -------------//
 
-    useEffect(() => {
-        socket?.emit("joinRoom", pathId)
-    }, [pathId, socket]) 
     const groupChatDetails = async() => {
         const urls = `http://localhost:3001/groupchat/getGroupchats/${pathId}`
         try{
@@ -191,3 +178,33 @@ function Dms(){
     )
 }
 export default Dms;
+
+/*
+    useEffect(() => {
+        setSocket(io.connect("https://wonderful-zabaione-bd1ac9.netlify.app/"))//ws://localhost:3002
+    }, [])
+
+    useEffect(() => {
+        socket?.emit("joinRoom", pathId)
+    }, [pathId, socket]) 
+    useEffect(() => {
+        socket?.emit("joinRoom", pathId)
+    }, [pathId, socket]) 
+
+    useEffect(() => { ////alnsflkasflkasmflkasdf asdklfnlksd
+        socket?.on("messageReceived", (msg) => {
+            console.log("message received from socket io ")
+            setNewMessage(msg)   
+            //setMessages((prev) => [...prev, newMessage])
+        }) 
+        return () => socket?.off('messageReceived');
+    }, [socket])
+
+    useEffect(() => {    
+        if(newMessage){ 
+            //setMessages((prev) => [...prev, newMessage])//[...messages, newMessage]
+            setNewMessage(null)
+        }
+    },[newMessage])  
+*/
+//----------------

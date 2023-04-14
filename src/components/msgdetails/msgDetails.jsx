@@ -14,7 +14,7 @@ import { fetchData } from '../../hooks/updateList'
 import axios from 'axios'
 import { ChannelContext } from '../../context/channelConext'
 import { UserContext } from '../../context/userContext'
-
+import { deleteChat } from '../../utils/firebase'
 
 const keys = ['_id', 'users', 'chatName', 'type', 'userIds', 'createdAt', 'updatedAt', '__v']
 
@@ -58,22 +58,24 @@ function MsgDetails({details, urls, gcUsers, test, type}){
             dispatch({type:'setDms', payload:newDmList})
         }
     }   
-    const channelDelete = () => {
+    const channelDelete = async() => {
         if(currentUser.username === details.users[0]){
             const gcName = details.chatName
-            deleteGroupChat(details._id, gcName)
-            updateChatList()
+            await deleteGroupChat(details._id, gcName)
+            await updateChatList()
+            await deleteChat(details.chatName)
             navigate('/channel/')
-            updateChatList()
+            await updateChatList()
         }else{
             alert("you are not authorized")
         }
     }
-    const dmDelete = () => {
-        deleteDmChat(details._id, details.chatName)
-        updateDmList()
+    const dmDelete = async() => {
+        await deleteDmChat(details._id, details.chatName)
+        await updateDmList()
+        await deleteChat(details.chatName)
         navigate('/dms/')
-        updateDmList()
+        await updateDmList()
     }
     const isAdmin = () => {
         if(currentUser.username === details.users[0]){

@@ -9,6 +9,7 @@ import ADD from '../../images/email.png'
 import REM from '../../images/sub.png'
 import { ChannelContext } from '../../context/channelConext'
 import { useNavigate } from "react-router-dom";
+import { createGroupChat } from '../../utils/firebase'
 
 function FriendsPage(){
     const location = useLocation();
@@ -88,6 +89,7 @@ function FriendItem({name, currUserName, userId, update}){
         }
         try{
             const data = await axios.post(createUrl, dmhandler)
+            await createGroupChat(data.data.chatName) //////firebase
             console.log(data)
             updateDmList()
         }catch(err){
