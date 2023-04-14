@@ -34,12 +34,15 @@ function LoginPage(){
             console.log(err)
         }
     }
-    const testLogin = () => {
-        dispatchUser({type:"login", payload:{sdfd:"adfsdfsdf"}})
+    const testAPi = async() => {
+        const url = 'https://bildtwo-api.onrender.com/auth/testingApi'
+        const data = await axios.post(url);
+        console.log(data)
     }
     return(   
         <div id="logMain">
         <div id="logDiv" >
+            <button onClick={testAPi}>api test</button>
             <div id="logWrapper">
             <h3>Login</h3>
             <div id="inpLabel">
