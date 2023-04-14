@@ -19,7 +19,7 @@ function LoginPage(){
 
     const fetchDataLog = async () => {
         setLoading(false)//https://bildtwo.onrender.com
-        const url = 'https://bildtwo.onrender.com/auth/login'
+        const url = 'https://bildtwo-api.onrender.com/auth/login'
         try{
             console.log("here")
             const data = await axios.post(url, loginState)
