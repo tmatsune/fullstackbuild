@@ -18,8 +18,8 @@ function LoginPage(){
     }
 
     const fetchDataLog = async () => {
-        setLoading(false)
-        const url = 'http://localhost:3001/auth/login'
+        setLoading(false)//https://bildtwo.onrender.com
+        const url = 'https://bildtwo.onrender.com/auth/login'
         try{
             console.log("here")
             const data = await axios.post(url, loginState)
@@ -89,8 +89,8 @@ function RegisterCard(){
         password: pass
     }
 
-    const registerApi = async() => {//https://wonderful-zabaione-bd1ac9.netlify.app
-        const url = 'https://wonderful-zabaione-bd1ac9.netlify.app/auth/register'//http://localhost:3001/auth/register
+    const registerApi = async() => {//https://bildtwo.onrender.com
+        const url = 'http://localhost:3001/auth/register'//http://localhost:3001/auth/register
         try{
             const userData = await axios.post(url, registerState)
             console.log(userData.data)
