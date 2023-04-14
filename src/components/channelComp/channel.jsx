@@ -90,6 +90,7 @@ function Channel(){
     }
 
     const getFireBaseMsg = async () => {
+
         const chatDocRef = doc(db, 'chats', channelInfo.chatName)
         onSnapshot(chatDocRef, (doc) => {
             if(doc.data()){
@@ -108,9 +109,10 @@ function Channel(){
     }
     useEffect(() => {
         if(Object.keys(channelInfo).length > 0){
-            const chatDocRef = doc(db, 'chats', channelInfo.chatName)
+            const gcName = pathId.replace(/%20/g,' ')
+            const chatDocRef = doc(db, 'chats', gcName)
             const unsub = onSnapshot(chatDocRef, (doc) => {
-            if(doc.data()){
+            if(doc.data()){   
                 console.log(doc.data().messages)
                 setMessages(doc.data().messages)  
             }else{
