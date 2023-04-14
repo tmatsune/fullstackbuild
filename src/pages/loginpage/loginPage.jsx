@@ -35,7 +35,7 @@ function LoginPage(){
         }
     }
     const testAPi = async() => {
-        const url = 'https://bildtwo-api.onrender.com/auth/testingApi'
+        const url = 'https://bildtwo-api.onrender.com/auth/testingApi'  
         const data = await axios.post(url);
         console.log(data)
     }
